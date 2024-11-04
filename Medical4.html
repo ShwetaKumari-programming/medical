@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Finder</title>
+    <style>
+        body{
+            font-family: Arial,sans-serif;
+            margin: 20px;
+        }
+        .doctor-list {
+            margin-top: 20px;
+        }
+        .doctor{
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .status{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right:5px;
+        }
+        .online{
+            background-color: green;
+        }
+        .offline{
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Find a Doctor</h1>
+    <input type="text" id="diseaseinput" placeholder="Enter disease name">
+    <button onclick="searchDoctor()">Search</button>
+    <div class="doctor-list" id="doctorList">
+        <!--List of doctors will appear here-->
+    </div>
+    <script>
+        function searchDoctors(){
+            const disease= document.getElementById('diseaseInput').value;
+            const doctorList = document.getElementById('doctorList');
+            doctorList.innerHTML=""; //Clear previous result
+
+            //Sample data-in a real application,you would fetch this form a server
+            const doctors = [
+                {
+                    name:'Dr.Naresh Trehan',
+                    specialization: 'Cardiologist',
+                    disease: 'Heart Disease',
+                    online:true
+                },
+                {
+                    name:'Dr.Sridhar Krishnamurthy',
+                    specialization: 'Neurologist',
+                    disease:'Migraine',
+                    online: false
+                },
+                {
+                    name:'Dr.Jaishree Sharad',
+                    specialization: 'Dermatologist',
+                    disease: 'Eczema',
+                    online:true
+                },
+                {
+                    name:'Dr.Prashant Jain',
+                    specialization:'Pediatrician',
+                    disease:'Flu',
+                    online:false
+                }
+            ];
+            //Filter doctors based on the entered disease
+            const filteredDoctors=doctors.filter(doctor => doctor.disease.toLowerCase() === disease.toLowerCase());
+            //Display the filtered list of doctors
+            filteredDoctors.forEach(doctor => {
+                const doctorDiv = document.createElement('div');
+                doctorDiv.className='doctor';
+                const statusClass = doctor.online? 'online':'offline';
+                doctorDiv.innerHTML='<span class="ststus ${statusClass}"></span>
+                <strong>${doctor.name}</strong><br>
+                specialization:${doctor.specialization} <br>
+                Curing Disease:${doctor.disease}';
+                doctorList.appendChild(doctorDiv);
+            });
+            //If no doctors found
+            if(filteredDoctors.length === 0) {
+                doctorList.innerHTML = '<p>No doctors found for this disease.</p>';+
+            }
+        }
+    </script>
+
+</body>
+</html>

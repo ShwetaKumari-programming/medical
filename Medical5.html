@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr.ABC-Smart Medical Assistance</title>
+    <link rel="stylesheet" href="style.css">
+    <!--Link to an external CSS file for styling-->
+    <style>
+        body{
+            font-family:Arial,sans-serif;
+            margin:0;
+            padding:0;
+            background-color: #f4f4f4;
+        }
+        header{
+            background: #007bff;
+            color:white;
+            padding:20px;
+            text-align:center;
+        }
+        nav {
+            margin:10px 0;
+        }
+        nav a{
+            color: white;
+            margin:0 15px;
+            text-decoration: none;
+        }
+        section{
+            padding:20px;
+            margin: 10px;
+            background:white;
+            border-radius:8px;
+        }
+        footer{
+            text-align:center;
+            padding: 10px;
+            background: #007bff;
+            color:white;
+            position:relative;
+            bottom:0;
+            width:100%;
+        }
+        .hidden-info{
+            display:none;/*Hide the doctor's contact information initially*/
+        }
+        .payment-info{
+            margin-top:20px;
+            font-weight:bold;
+            color:#007bff;
+        }
+        .payment-button {
+            background-color: #28a745;
+            color:white;
+            padding: 10px 20px;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dr.ABC</h1>
+        <h2>Smart Medical Assistance</h2>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#service">Service</a>
+            <a href="contact">contact</a>
+        </nav>
+    </header>
+    <section id="about">
+        <h3>About Me</h3>
+        <p>Welcome to my practice! I am a board-certified family medicine physician with over 10 years of experience in providing comprehensive healthcare to patients of all ages. My goal is to help you achieve optimal health through personalized care</p>
+
+    </section>
+    <section id="services">
+        <h3>Services Offered</h3>
+        <ul>
+            <li>Annual Physicals</li>
+            <li>Preventive Medicine</li>
+            <li>Chronic Disease Management</li>
+            <li>Pediatric Care</li>
+            <li>Minor Surgical Procedure</li>
+        </ul>
+    </section>
+    <section id="contact">
+        <h3>Contact Information</h3>
+        <p>If you have any question or would like to schedule an appointment,please complete the payment below to reveal my contact information</p>
+        <div class="payment-info">
+            <p>Payment Amount:Rs50</p>
+            <button class="payment-button" onclick="revealContact()">Pay Now</button>
+        </div>
+        <div class="hidden-info" id="contact-detail">
+            <p>Email: <a href="mailto:ABC@example.com">drABC@example.com</a></p>
+            <p>Phone:<a href="tel:+9123456789">(912)345-6789</a></p>
+            <p>Address:ABC,INDIA</p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy;2024 Dr.ABC.All Rights Reserved</p>
+    </footer>
+    <script>
+        function revealContact(){
+            //Show the hidden contact information
+            document.getElementById('contact-details').style.display='block';
+            //Optionally,disable the payment button after payment is made
+            document.querySelector('payment-button').disabled=true;
+            document.querySelector('payment-button').innerText='Payment Completed';
+        }
+    </script>
+</body>
+</html>
