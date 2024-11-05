@@ -7,57 +7,57 @@
     <link rel="stylesheet" href="style.css">
     <!--Link to an external CSS file for styling-->
     <style>
-        body{
-            font-family:Arial,sans-serif;
-            margin:0;
-            padding:0;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             background-color: #f4f4f4;
         }
-        header{
+        header {
             background: #007bff;
-            color:white;
-            padding:20px;
-            text-align:center;
+            color: white;
+            padding: 20px;
+            text-align: center;
         }
         nav {
-            margin:10px 0;
+            margin: 10px 0;
         }
-        nav a{
+        nav a {
             color: white;
-            margin:0 15px;
+            margin: 0 15px;
             text-decoration: none;
         }
-        section{
-            padding:20px;
+        section {
+            padding: 20px;
             margin: 10px;
-            background:white;
-            border-radius:8px;
+            background: white;
+            border-radius: 8px;
         }
-        footer{
-            text-align:center;
+        footer {
+            text-align: center;
             padding: 10px;
             background: #007bff;
-            color:white;
-            position:relative;
-            bottom:0;
-            width:100%;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
-        .hidden-info{
-            display:none;/*Hide the doctor's contact information initially*/
+        .hidden-info {
+            display: none; /* Hide the doctor's contact information initially */
         }
-        .payment-info{
-            margin-top:20px;
-            font-weight:bold;
-            color:#007bff;
+        .payment-info {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #007bff;
         }
         .payment-button {
             background-color: #28a745;
-            color:white;
+            color: white;
             padding: 10px 20px;
-            border:none;
-            border-radius:5px;
-            cursor:pointer;
-            font-size:16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -67,14 +67,13 @@
         <h2>Smart Medical Assistance</h2>
         <nav>
             <a href="#about">About</a>
-            <a href="#service">Service</a>
-            <a href="contact">contact</a>
+            <a href="#services">Service</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
     <section id="about">
         <h3>About Me</h3>
-        <p>Welcome to my practice! I am a board-certified family medicine physician with over 10 years of experience in providing comprehensive healthcare to patients of all ages. My goal is to help you achieve optimal health through personalized care</p>
-
+        <p>Welcome to my practice! I am a board-certified family medicine physician with over 10 years of experience in providing comprehensive healthcare to patients of all ages. My goal is to help you achieve optimal health through personalized care.</p>
     </section>
     <section id="services">
         <h3>Services Offered</h3>
@@ -88,27 +87,19 @@
     </section>
     <section id="contact">
         <h3>Contact Information</h3>
-        <p>If you have any question or would like to schedule an appointment,please complete the payment below to reveal my contact information</p>
+        <p>If you have any questions or would like to schedule an appointment, please complete the payment below to proceed.</p>
         <div class="payment-info">
-            <p>Payment Amount:Rs50</p>
-            <button class="payment-button" onclick="revealContact()">Pay Now</button>
-        </div>
-        <div class="hidden-info" id="contact-detail">
-            <p>Email: <a href="mailto:ABC@example.com">drABC@example.com</a></p>
-            <p>Phone:<a href="tel:+9123456789">(912)345-6789</a></p>
-            <p>Address:ABC,INDIA</p>
+            <p>Payment Amount: Rs50</p>
+            <button class="payment-button" onclick="redirectToPayment()">Pay Now</button>
         </div>
     </section>
     <footer>
-        <p>&copy;2024 Dr.ABC.All Rights Reserved</p>
+        <p>&copy;2024 Dr.ABC. All Rights Reserved</p>
     </footer>
     <script>
-        function revealContact(){
-            //Show the hidden contact information
-            document.getElementById('contact-details').style.display='block';
-            //Optionally,disable the payment button after payment is made
-            document.querySelector('payment-button').disabled=true;
-            document.querySelector('payment-button').innerText='Payment Completed';
+        function redirectToPayment() {
+            // Redirect to Medical7.html
+            window.location.href = 'Medical7.html';
         }
     </script>
 </body>
