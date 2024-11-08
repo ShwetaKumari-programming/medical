@@ -17,13 +17,15 @@
 
         .login-container {
             background-color: white;
-            padding: 5px;
+            padding: 20px;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0,1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
         }
 
-        h2{
+        h2 {
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .form-group {
@@ -36,15 +38,15 @@
         }
 
         input[type="text"],
-        input[type = "password"] {
-            width:200%;
+        input[type="password"] {
+            width: 100%;
             padding: 10px;
-            border: 5px solid #ccc;
+            border: 1px solid #ccc;
             border-radius: 4px;
         }
 
         button {
-            width: 200%;
+            width: 100%;
             padding: 10px;
             background-color: #5cb85c;
             color: white;
@@ -56,16 +58,12 @@
         button:hover {
             background-color: #4cae4c;
         }
-
-        button
     </style>
 </head>
-
 <body>
-    
     <div class="login-container">
         <h2>Login</h2>
-        <form action="/login" method="POST">
+        <form action="Medical4.html" method="GET">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="username" required>

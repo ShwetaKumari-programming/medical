@@ -11,12 +11,16 @@
         }
         .doctor-list {
             margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .doctor {
             border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 15px;
+            width: 200px;
             border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
         }
         .status {
             display: inline-block;
@@ -31,6 +35,19 @@
         .offline {
             background-color: red;
         }
+        .tags {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .tag {
+            background-color: #e0e0e0;
+            color: #333;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -41,59 +58,264 @@
         <!-- List of doctors will appear here -->
     </div>
     <script>
-        function searchDoctors() {
-            const disease = document.getElementById('diseaseinput').value; // Corrected ID
+        const doctors = [
+            {
+                name: 'Dr. Sarah Johnson',
+                specialization: 'Cardiologist',
+                tags: ['Heart Disease', 'High Blood Pressure', 'Arrhythmia', 'Angina'],
+                online: true
+            },
+            {
+                name: 'Dr. Emily Martinez',
+                specialization: 'Neurologist',
+                tags: ['Migraine', 'Epilepsy', 'Alzheimer\'s', 'Parkinson\'s'],
+                online: false
+            },
+            {
+                name: 'Dr. Robert Lee',
+                specialization: 'Dermatologist',
+                tags: ['Eczema', 'Acne', 'Psoriasis', 'Skin Cancer'],
+                online: true
+            },
+            {
+                name: 'Dr. Olivia Smith',
+                specialization: 'Pediatrician',
+                tags: ['Flu', 'Bronchitis', 'Asthma', 'Allergies'],
+                online: false
+            },
+            {
+                name: 'Dr. William Brown',
+                specialization: 'Orthopedist',
+                tags: ['Arthritis', 'Fracture', 'Back Pain', 'Osteoporosis'],
+                online: true
+            },
+            {
+                name: 'Dr. Ava Davis',
+                specialization: 'Gastroenterologist',
+                tags: ['IBS', 'Ulcers', 'Hepatitis', 'Crohn\'s Disease'],
+                online: false
+            },
+            {
+                name: 'Dr. Noah Wilson',
+                specialization: 'Psychiatrist',
+                tags: ['Anxiety', 'Depression', 'Bipolar Disorder', 'OCD'],
+                online: true
+            },
+            {
+                name: 'Dr. Mia Moore',
+                specialization: 'Endocrinologist',
+                tags: ['Diabetes', 'Thyroid Disorder', 'Hormonal Imbalance', 'Osteoporosis'],
+                online: true
+            },
+            {
+                name: 'Dr. Mason White',
+                specialization: 'Pulmonologist',
+                tags: ['Asthma', 'COPD', 'Lung Cancer', 'Bronchitis'],
+                online: false
+            },
+            {
+                name: 'Dr. Isabella Green',
+                specialization: 'Hematologist',
+                tags: ['Anemia', 'Leukemia', 'Hemophilia', 'Thrombosis'],
+                online: true
+            },
+            {
+                name: 'Dr. Anil Gupta',
+                specialization: 'Cardiologist',
+                tags: ['Heart Disease', 'Hypertension', 'Arrhythmia', 'Angina'],
+                online: true
+            },
+            {
+                name: 'Dr. Sunita Desai',
+                specialization: 'Neurologist',
+                tags: ['Stroke', 'Epilepsy', 'Migraine', 'Parkinson\'s Disease'],
+                online: false
+            },
+            {
+                name: 'Dr. Rajesh Kumar',
+                specialization: 'Oncologist',
+                tags: ['Lung Cancer', 'Breast Cancer', 'Colon Cancer', 'Leukemia'],
+                online: true
+            },
+            {
+                name: 'Dr. Kavita Sharma',
+                specialization: 'Dermatologist',
+                tags: ['Eczema', 'Psoriasis', 'Skin Allergies', 'Acne'],
+                online: false
+            },
+            {
+                name: 'Dr. Vikram Singh',
+                specialization: 'Pediatrician',
+                tags: ['Dengue Fever', 'Typhoid', 'Malaria', 'Flu'],
+                online: true
+            },
+            {
+                name: 'Dr. Pooja Mehta',
+                specialization: 'Gastroenterologist',
+                tags: ['Hepatitis', 'Ulcers', 'Acid Reflux', 'IBS'],
+                online: false
+            },
+            {
+                name: 'Dr. Aditya Joshi',
+                specialization: 'Pulmonologist',
+                tags: ['Asthma', 'Tuberculosis', 'Bronchitis', 'COPD'],
+                online: true
+            },
+            {
+                name: 'Dr. Sneha Nair',
+                specialization: 'Endocrinologist',
+                tags: ['Diabetes', 'Thyroid Disorder', 'Hormonal Imbalance', 'PCOS'],
+                online: true,
+                link: 'Medical5.html'
+            },
+            {
+                name: 'Dr. Arjun Patel',
+                specialization: 'Orthopedist',
+                tags: ['Arthritis', 'Osteoporosis', 'Joint Pain', 'Back Pain'],
+                online: false
+            },
+            {
+                name: 'Dr. Meera Rao',
+                specialization: 'Hematologist',
+                tags: ['Anemia', 'Leukemia', 'Hemophilia', 'Thrombosis'],
+                online: true
+            },
+            {
+                name: 'Dr. Ravi Choudhury',
+                specialization: 'Psychiatrist',
+                tags: ['Depression', 'Anxiety', 'Bipolar Disorder', 'OCD'],
+                online: false
+            },
+            {
+                name: 'Dr. Alok Jain',
+                specialization: 'Nephrologist',
+                tags: ['Kidney Disease', 'Hypertension', 'Dialysis', 'Kidney Stones'],
+                online: true
+            },
+            {
+                name: 'Dr. Priya Mukherjee',
+                specialization: 'Rheumatologist',
+                tags: ['Rheumatoid Arthritis', 'Lupus', 'Gout', 'Fibromyalgia'],
+                online: true
+            },
+            {
+                name: 'Dr. Suresh Reddy',
+                specialization: 'Ophthalmologist',
+                tags: ['Cataracts', 'Glaucoma', 'Refractive Errors', 'Conjunctivitis'],
+                online: false
+            },
+            {
+                name: 'Dr. Lakshmi Menon',
+                specialization: 'Gynecologist',
+                tags: ['PCOS', 'Endometriosis', 'Menstrual Disorders', 'Infertility'],
+                online: true
+            },
+            {
+                name: 'Dr. Mohan Iyer',
+                specialization: 'Urologist',
+                tags: ['Kidney Stones', 'Prostate Enlargement', 'UTI', 'Bladder Issues'],
+                online: false
+            },
+            {
+                name: 'Dr. Ritu Verma',
+                specialization: 'Immunologist',
+                tags: ['Allergies', 'Asthma', 'Autoimmune Disorders', 'Immunodeficiency'],
+                online: true
+            },
+            {
+                name: 'Dr. Nikhil Bansal',
+                specialization: 'Endodontist',
+                tags: ['Root Canal', 'Tooth Decay', 'Dental Pain', 'Gum Disease'],
+                online: true
+            },
+            {
+                name: 'Dr. Shalini Roy',
+                specialization: 'General Physician',
+                tags: ['Hypertension', 'Diabetes', 'Malaria', 'Viral Fever'],
+                online: false
+            },
+            {
+                name: 'Dr. Tarun Shah',
+                specialization: 'ENT Specialist',
+                tags: ['Sinusitis', 'Tonsillitis', 'Hearing Loss', 'Ear Infection'],
+                online: true
+            },
+            {
+                name: 'Dr. Neha Bhatt',
+                specialization: 'Allergist',
+                tags: ['Food Allergies', 'Pollen Allergy', 'Asthma', 'Allergic Rhinitis'],
+                online: false
+            },
+            {
+            name: 'Dr. Anjali Rao',
+            specialization: 'Immunologist',
+            tags: ['Asthma', 'Autoimmune Disorders', 'Immunodeficiency', 'Allergies'],
+            online: true
+            },
+            {
+                name: 'Dr. Ramesh Deshmukh',
+                specialization: 'Pulmonologist',
+                tags: ['Chronic Bronchitis', 'COPD', 'Tuberculosis', 'Lung Infection'],
+                online: false
+            },
+            {
+                name: 'Dr. Seema Kapoor',
+                specialization: 'Dermatologist',
+                tags: ['Psoriasis', 'Eczema', 'Skin Rashes', 'Acne'],
+                online: true
+            },
+            {
+                name: 'Dr. Vikas Nanda',
+                specialization: 'Endocrinologist',
+                tags: ['Diabetes', 'Thyroid Disorders', 'Hormonal Imbalance', 'PCOS'],
+                online: false
+            },
+
+        ];
+
+        function displayDoctors(doctors) {
             const doctorList = document.getElementById('doctorList');
             doctorList.innerHTML = ""; // Clear previous result
 
-            // Sample data - in a real application, you would fetch this from a server
-            const doctors = [
-                {
-                    name: 'Dr. Naresh Trehan',
-                    specialization: 'Cardiologist',
-                    disease: 'Heart Disease',
-                    online: true
-                },
-                {
-                    name: 'Dr. Sridhar Krishnamurthy',
-                    specialization: 'Neurologist',
-                    disease: 'Migraine',
-                    online: false
-                },
-                {
-                    name: 'Dr. Jaishree Sharad',
-                    specialization: 'Dermatologist',
-                    disease: 'Eczema',
-                    online: true
-                },
-                {
-                    name: 'Dr. Prashant Jain',
-                    specialization: 'Pediatrician',
-                    disease: 'Flu',
-                    online: false
-                }
-            ];
-
-            // Filter doctors based on the entered disease
-            const filteredDoctors = doctors.filter(doctor => doctor.disease.toLowerCase() === disease.toLowerCase());
-
-            // Display the filtered list of doctors
-            filteredDoctors.forEach(doctor => {
+            doctors.forEach(doctor => {
                 const doctorDiv = document.createElement('div');
                 doctorDiv.className = 'doctor';
                 const statusClass = doctor.online ? 'online' : 'offline';
-                doctorDiv.innerHTML = `<span class="status ${statusClass}"></span>
-                <strong>${doctor.name}</strong><br>
-                Specialization: ${doctor.specialization} <br>
-                Curing Disease: ${doctor.disease}`;
+
+                doctorDiv.innerHTML = `
+                    <span class="status ${statusClass}"></span>
+                    <strong>${doctor.name}</strong><br>
+                    Specialization: ${doctor.specialization}<br>
+                    <div class="tags">
+                        ${doctor.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                `;
+
+                // Redirect to the specified link or a blank page on click
+                doctorDiv.onclick = () => {
+                    const link = doctor.link || '#';
+                    window.location.href = link;
+                };
+
                 doctorList.appendChild(doctorDiv);
             });
+        }
 
-            // If no doctors found
+        function searchDoctors() {
+            const disease = document.getElementById('diseaseinput').value.toLowerCase();
+            const filteredDoctors = doctors.filter(doctor =>
+                doctor.tags.some(tag => tag.toLowerCase().includes(disease))
+            );
+            
             if (filteredDoctors.length === 0) {
-                doctorList.innerHTML = '<p>No doctors found for this disease.</p>'; // Removed unnecessary plus sign
+                document.getElementById('doctorList').innerHTML = '<p>No doctors found for this disease.</p>';
+            } else {
+                displayDoctors(filteredDoctors);
             }
         }
+
+        // Initial display of all doctors
+        displayDoctors(doctors);
     </script>
 </body>
 </html>
