@@ -7,16 +7,21 @@
 
     <style>
         body{
-            font-family:Arial,sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin:0;
+            margin: 0;
         }
         .container{
             text-align: center;
+        }
+        .logo {
+            width: 400px; /* Set a specific width */
+            height: auto; /* Keep aspect ratio */
+            margin-bottom: 20px;
         }
         h1{
             margin-bottom: 20px;
@@ -28,24 +33,26 @@
             border: none;
             cursor: pointer;
             transition: background-color 0.3s;
+            border-radius: 8px;
         }
         .user-button{
             background-color: #007bff;
-            color:white;
+            color: white;
         }
         .doctor-button{
             background-color: #28a745;
             color: white;
         }
-        Signin-button:hover{
+        .login-button:hover {
             opacity: 0.8;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <img src="logo.png" alt="Doc+" class="logo">
         <h1>Welcome to Our Healthcare Portal</h1>
-        <button class="login-button user-button" onclick="window.location.href='user-login.html'">User Login</button>
+        <button class="login-button user-button" onclick="window.location.href='aMedical8.html'">User Login</button>
         <button class="login-button doctor-button" onclick="window.location.href='Medical3.html'">Doctor Login</button>
     </div>
 </body>
